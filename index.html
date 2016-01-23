@@ -64,6 +64,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-cms-study" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/23/cms-study/" class="article-date">
+  <time datetime="2016-01-23T05:51:29.000Z" itemprop="datePublished">2016-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/23/cms-study/">CMS垃圾收集器学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CMS_u6267_u884C_u8FC7_u7A0B"><a href="#CMS_u6267_u884C_u8FC7_u7A0B" class="headerlink" title="CMS执行过程"></a>CMS执行过程</h3><p><img src="http://7xqeip.com1.z0.glb.clouddn.com/2016-01-18___10.43.00.png" alt="alt text" title="CMS垃圾收集过程"></p>
+<h3 id="u7EBF_u4E0AJVM_u53C2_u6570_u914D_u7F6E"><a href="#u7EBF_u4E0AJVM_u53C2_u6570_u914D_u7F6E" class="headerlink" title="线上JVM参数配置"></a>线上JVM参数配置</h3><pre><code>/opt/taobao/java/bin/java 
+-Djava.util.logging.config.file=/home/admin/wmpoutput/.default/conf/logging.properties 
+-server 
+-XX:+UseConcMarkSweepGC 
+-XX:+UseCMSCompactAtFullCollection 
+-XX:CMSMaxAbortablePrecleanTime=5000 
+-XX:+CMSClassUnloadingEnabled 
+-XX:+UseCMSInitiatingOccupancyOnly 
+-XX:CMSInitiatingOccupancyFraction=80 
+-XX:+HeapDumpOnOutOfMemoryError 
+-XX:HeapDumpPath=/home/admin/logs/java.hprof 
+-verbose:gc -Xloggc:/home/admin/logs/gc.log 
+-XX:+PrintGCDetails 
+-XX:+PrintGCDateStamps 
+-Djava.awt.headless=true 
+-Dsun.net.client.defaultConnectTimeout=10000
+-Dsun.net.client.defaultReadTimeout=30000 
+-XX:+DisableExplicitGC     //ignore System.gc()
+-Dproject.name=wmpoutput 
+-Xms5120m -Xmx5120m -Xmn2500m -XX:PermSize=96m -    XX:MaxPermSize=256m 
+-XX:ParallelGCThreads=4 
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
+-Dlog4j.defaultInitOverride=true 
+-Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true 
+-Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_HTTP_SEPARATORS_IN_V0=true 
+-Djava.endorsed.dirs=/opt/taobao/tomcat/endorsed 
+-classpath /opt/taobao/tomcat/bin/bootstrap.jar:/opt/taobao/tomcat/bin/tomcat-juli.jar 
+-Dcatalina.base=/home/admin/wmpoutput/.default 
+-Dcatalina.home=/opt/taobao/tomcat 
+-Djava.io.tmpdir=/home/admin/wmpoutput/.default/temp org.apache.catalina.startup.Bootstrap 
+-Djboss.server.home.dir=/home/admin/wmpoutput/.default 
+-Djboss.server.home.url=file:/home/admin/wmpoutput/.default start
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/23/cms-study/" data-id="cijqpb4av0000ss6j0qxhjl5p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-write-clean-code" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/01/23/write-clean-code/" class="article-date">
@@ -176,7 +247,7 @@ List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/23/write-clean-code/" data-id="cijqomruj0002r46j070nl47d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/23/write-clean-code/" data-id="cijqpb4bf0004ss6jb6prng3u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li></ul>
@@ -223,7 +294,7 @@ List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/23/hello-world/" data-id="cijqomrtx0000r46ja5iy2quc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/23/hello-world/" data-id="cijqpb4bi0007ss6jpclcxa0t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +316,7 @@ List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码/">代码</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码/">代码</a></li></ul>
     </div>
   </div>
 
@@ -255,7 +326,7 @@ List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代码/" style="font-size: 10px;">代码</a>
+      <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/代码/" style="font-size: 10px;">代码</a>
     </div>
   </div>
 
@@ -275,6 +346,10 @@ List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/23/cms-study/">CMS垃圾收集器学习</a>
+          </li>
         
           <li>
             <a href="/2016/01/23/write-clean-code/">guava实践优雅代码（一）</a>
