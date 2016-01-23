@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-23T04:19:04.000Z</updated>
+  <updated>2016-01-23T05:34:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[guava实践优雅代码（一）]]></title>
+    <link href="http://yoursite.com/2016/01/23/write-clean-code/"/>
+    <id>http://yoursite.com/2016/01/23/write-clean-code/</id>
+    <published>2016-01-23T05:32:07.000Z</published>
+    <updated>2016-01-23T05:34:26.000Z</updated>
+    <content type="html"><![CDATA[<p>1.多关键字排序</p>
+<p> （1）不优雅实现(wmpoutput线上代码)</p>
+<pre><code>public static class InvInputParamComparator implements Comparator&lt;InventoryInputDTO&gt; {
+    public int compare(InventoryInputDTO o1, InventoryInputDTO o2) {
+        if(o1.getBdd().getSourceDocType().getCode() == o2.getBdd().getSourceDocType().getCode()) {
+            if(o1.getBdd().getSourceDocId().longValue() == o2.getBdd().getSourceDocId().longValue()) {
+                if(o1.getBdd().getSourceDetailDocId().longValue() == o2.getBdd().getSourceDetailDocId().longValue()) {
+                    if(o1.getItemBatchId() == null || o1.getItemBatchId() == null) {
+                        return 0;
+                    } else if(o1.getItemBatchId().longValue() == o2.getItemBatchId().longValue()) {
+                        if(o1.getCabinetId() == null || o1.getCabinetId() == null) {
+                            return 0;
+                        } else {
+                            return o1.getCabinetId().intValue() - o2.getCabinetId().intValue();
+                        }
+                    } else {
+                        return o1.getItemBatchId().intValue() - o2.getItemBatchId().intValue();
+                    }
+                } else {
+                    return o1.getBdd().getSourceDetailDocId().intValue() - o2.getBdd().getSourceDetailDocId().intValue();
+                }
+            } else {
+                return o1.getBdd().getSourceDocId().intValue() - o2.getBdd().getSourceDocId().intValue();
+            }
+        } else {
+            return o1.getBdd().getSourceDocType().getCode() - o2.getBdd().getSourceDocType().getCode();
+        }
+    }
+}
+</code></pre><p>（2）优雅实现（利用guava的ComparisonChain实现多关键字比较）</p>
+<pre><code>       public static class InvInputParamComparator implements Comparator&lt;InventoryInputDTO&gt; {
+    public int compare(InventoryInputDTO o1, InventoryInputDTO o2) {
+        return ComparisonChain.start()
+                .compare(o1.getBdd().getSourceDocType().getCode(), o2.getBdd().getSourceDocType().getCode())
+                .compare(o1.getBdd().getSourceDocId().longValue(), o2.getBdd().getSourceDocId().longValue())
+                .compare(o1.getBdd().getSourceDetailDocId().longValue(), o2.getBdd().getSourceDetailDocId().longValue())
+                .compare(o1.getItemBatchId(), o2.getItemBatchId())
+                .compare(o1.getCabinetId(), o2.getCabinetId())
+                .result();
+    }
+}
+</code></pre><p>2.繁琐的for循环遍历（如过滤掉状态为-1的对象）</p>
+<p>2.1 集合过滤</p>
+<p>（1）不优雅实现(wmpoutput线上代码)</p>
+<pre><code> /**
+ * 过滤废弃的包裹
+ * @param listVO
+ */
+private void removeUselessPackage(List&lt;RvPackageVO&gt; listVO) {
+    List&lt;RvPackageVO&gt; result = Lists.newArrayList();
+    for (RvPackageVO packageVO : listVO) {
+        if (!packageVO.getStatus().equals(-1)) {
+            result.add(packageVO);
+        }
+    }
+    listVO = result;
+}
+</code></pre><p>（2）优雅实现（利用guava的过滤器过滤集合中不符合条件的元素）</p>
+<pre><code>Collection&lt;YitongObject&gt;  filterCollection = Collections2.filter(list, new Predicate&lt;YitongObject&gt;(){ 
+   @Override 
+   public boolean apply(YitongObject obj) { 
+       return !obj.getStatus().equals(-1);
+}});
+</code></pre><p>2.2 集合中对象转换</p>
+<p>（1）不优雅实现(wmpevent线上代码)</p>
+<pre><code>for(PackageEventLogDTO eventDTO:eventDTOList){
+    eventDTO.setStatusText(SaleOutEventConstant.PackageStatus.getEnumValue(eventDTO.getStatus()));
+}
+</code></pre><p>（2）优雅实现</p>
+<pre><code>   Collection&lt;RvPackageVO&gt;  formatCollection = Lists.transform(list, new Function&lt;RvPackageVO,RvPackageVO&gt;(){
+   @Override
+   public RvPackageVO apply(RvPackageVO input) {
+       input.setStatusStr(RvNoticeStatus.PACKAGE.findLabel(input.getStatus()));
+       return input;
+   }
+});
+</code></pre><p>3.集合</p>
+<p>（1）new一个集合</p>
+<pre><code>Map&lt;String, Collection&lt;ItemBarcodeDTO&gt;&gt; result = new HashMap&lt;String, Collection&lt;ItemBarcodeDTO&gt;&gt;();
+
+List&lt;Foo&lt;Bar, Baz&gt;&gt; list = new ArrayList&lt;Foo&lt;Bar, Baz&gt;&gt;();
+</code></pre><p>(2)利用guava的集合类</p>
+<pre><code>Map&lt;String, Collection&lt;ItemBarcodeDTO&gt;&gt; result =Maps.newHashMap();
+
+List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
+</code></pre><p>4.<br>ArrayList还给我们提供了将底层数组的容量调整为当前列表保存的实际元素的大小的功能。它可以通过trimToSize()方法来实现。该方法可以最小化ArrayList实例的存储量。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1.多关键字排序</p>
+<p> （1）不优雅实现(wmpoutput线上代码)</p>
+<pre><code>public static class InvInputParamComparator implements Comparator&lt;InventoryInp]]>
+    </summary>
+    
+      <category term="代码" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
