@@ -3,9 +3,9 @@
   <title><![CDATA[WriteMore]]></title>
   
   <link href="/atom.xml" rel="self"/>
-  <link href="http:yitong95.com/"/>
+  <link href="http://yitong95.com/"/>
   <updated>2016-01-23T05:54:04.000Z</updated>
-  <id>http:yitong95.com/</id>
+  <id>http://yitong95.com/</id>
   
   <author>
     <name><![CDATA[yitong]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[CMS垃圾收集器学习]]></title>
-    <link href="http:yitong95.com/2016/01/23/cms-study/"/>
-    <id>http:yitong95.com/2016/01/23/cms-study/</id>
+    <link href="http://yitong95.com/2016/01/23/cms-study/"/>
+    <id>http://yitong95.com/2016/01/23/cms-study/</id>
     <published>2016-01-23T05:51:29.000Z</published>
     <updated>2016-01-23T05:54:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="CMS_u6267_u884C_u8FC7_u7A0B"><a href="#CMS_u6267_u884C_u8FC7_u7A0B" class="headerlink" title="CMS执行过程"></a>CMS执行过程</h3><p><img src="http://7xqeip.com1.z0.glb.clouddn.com/2016-01-18___10.43.00.png" alt="alt text" title="CMS垃圾收集过程"></p>
@@ -58,14 +58,14 @@
     <![CDATA[<h3 id="CMS_u6267_u884C_u8FC7_u7A0B"><a href="#CMS_u6267_u884C_u8FC7_u7A0B" class="headerlink" title="CMS执行过程"></a>CMS执行过程</h3><p><img src="]]>
     </summary>
     
-      <category term="JVM" scheme="http:yitong95.com/tags/JVM/"/>
+      <category term="JVM" scheme="http://yitong95.com/tags/JVM/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[guava实践优雅代码（一）]]></title>
-    <link href="http:yitong95.com/2016/01/23/write-clean-code/"/>
-    <id>http:yitong95.com/2016/01/23/write-clean-code/</id>
+    <link href="http://yitong95.com/2016/01/23/write-clean-code/"/>
+    <id>http://yitong95.com/2016/01/23/write-clean-code/</id>
     <published>2016-01-23T05:32:07.000Z</published>
     <updated>2016-01-23T05:34:26.000Z</updated>
     <content type="html"><![CDATA[<p>1.多关键字排序</p>
@@ -161,14 +161,14 @@ List&lt;Foo&lt;Bar, Baz&gt;&gt; list = Lists.newArrayList();
 <pre><code>public static class InvInputParamComparator implements Comparator&lt;InventoryInp]]>
     </summary>
     
-      <category term="代码" scheme="http:yitong95.com/tags/%E4%BB%A3%E7%A0%81/"/>
+      <category term="代码" scheme="http://yitong95.com/tags/%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="http:yitong95.com/2016/01/23/hello-world/"/>
-    <id>http:yitong95.com/2016/01/23/hello-world/</id>
+    <link href="http://yitong95.com/2016/01/23/hello-world/"/>
+    <id>http://yitong95.com/2016/01/23/hello-world/</id>
     <published>2016-01-23T04:19:04.000Z</published>
     <updated>2016-01-23T04:19:04.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
